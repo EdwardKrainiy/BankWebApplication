@@ -9,7 +9,7 @@ public class MainPageController {
 
     @GetMapping("/")
     public String mainPage(Model model) {
-        model.addAttribute("mainPageText", "Главная страница");
+        model.addAttribute("mainPageText", "Hello World!");
         return "mainPage";
     }
 }
