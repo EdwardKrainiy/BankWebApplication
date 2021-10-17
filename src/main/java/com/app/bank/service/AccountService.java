@@ -25,6 +25,7 @@ public class AccountService {
     public Account findByLogin(String login){
         return accountRepository.findByLogin(login);
     }
+    public Account findById(int accountId){return accountRepository.findById(accountId);}
 
     public int createAccount(Account account){
         return accountRepository.create(account);

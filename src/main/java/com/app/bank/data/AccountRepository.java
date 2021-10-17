@@ -16,4 +16,8 @@ public class AccountRepository extends EntityRepository<Account> {
         return (Account) transactionManager.getSessionFactory().openSession().createQuery("from Account where login =:login ")
                 .setParameter("login", login).uniqueResult();
     }
+
+    public Account findById(int accountId){
+        return (Account) transactionManager.getSessionFactory().openSession().createQuery("from Account where id =: accountId").setParameter("accountId", accountId).uniqueResult();
+    }
 }

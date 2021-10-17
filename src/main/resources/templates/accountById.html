@@ -19,10 +19,7 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:if="${accounts.empty}">
-        <td colspan="2"> No Accounts available </td>
-    </tr>
-    <tr th:each="acc : ${accounts}">
+    <tr th:each="acc : ${account}">
         <td><span th:text="${acc.login}"> Login </span></td>
         <td><span th:text="${acc.password}"> Password </span></td>
     </tr>
