@@ -1,13 +1,12 @@
 <!DOCTYPE html>
 <html lang="en"
-            xmlns="http://www.w3.org/1999/xhtml"
-            xmlns:th="http://www.thymleaf.org">
+      xmlns:th="http://www.thymleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Create new account</title>
+    <title>Edit account</title>
 </head>
 <body>
-<form th:method="POST" th:action="@{/account}" th:object="${account}">
+<form th:method="POST" th:action="@{/account/{id}(id=${account.getId()})}" th:object="${account}">
     <div>
         <label for="login">Login</label>
         <input type="text" th:field = "*{login}" id="login">
@@ -17,7 +16,7 @@
         <input type="text" th:field = "*{password}" id="password">
         <br/>
 
-        <input type="submit" value="Add account!">
+        <input type="submit" value="Update!">
     </div>
 </form>
 </body>

@@ -28,13 +28,25 @@ public class AccountMappingController {
     }
 
     @GetMapping("/new")
-    public String createNewAccount(Model model, @ModelAttribute("account") Account account){
+    public String createNewAccount(@ModelAttribute("account") Account account){
         return "account/newAccountForm";
     }
 
     @PostMapping()
-    public String putNewAccount(Model model, @ModelAttribute("account") Account account){
+    public String putNewAccount(@ModelAttribute("account") Account account){
         accountService.createAccount(account);
+        return "redirect:/account";
+    }
+
+    @GetMapping("/{id}/edit")
+    public String editAccount(Model model, @PathVariable("id") int accountId){
+        model.addAttribute("account", accountService.findById(accountId));
+        return "account/edit";
+    }
+
+    @PostMapping("/{id}")
+    public String updateAccount(@ModelAttribute("person") Account account) {
+        accountService.updateAccount(account);
         return "redirect:/account";
     }
 

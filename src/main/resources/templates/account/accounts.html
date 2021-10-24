@@ -15,7 +15,7 @@
     </thead>
     <tbody>
     <tr th:if="${accounts.empty}">
-        <td colspan="2"> No Accounts available </td>
+        <td> No Accounts available </td>
     </tr>
     <tr th:each="acc : ${accounts}">
         <td><span th:text="${acc.login}"> Login </span></td>
