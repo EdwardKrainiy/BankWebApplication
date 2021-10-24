@@ -21,14 +21,11 @@ import java.util.Properties;
 @EnableAutoConfiguration(exclude = HibernateJpaAutoConfiguration.class)
 @PropertySource(value = "classpath:db.properties")
 public class HibernateConfig {
+    @Autowired
     private Environment environment;
 
-    @Autowired
-    public void setEnvironment(Environment environment) {
-        this.environment = environment;
-    }
-
-    private Properties hibernateProperties() {
+    @Bean
+    public Properties hibernateProperties() {
         Properties properties = new Properties();
         properties.put("hibernate.dialect", environment.getRequiredProperty("hibernate.dialect"));
         properties.put("hibernate.show_sql", environment.getRequiredProperty("hibernate.show_sql"));

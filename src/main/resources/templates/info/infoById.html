@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymleaf.org">
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-uWxY/CJNBR+1zjPWmfnSnVxwRheevXITnMqoEIeG1LJrdI0GlVs/9cVSyPYXdcSF" crossorigin="anonymous">
+  <!-- Bootstrap Bundle JS (jsDelivr CDN) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>    <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Account info</title>
+</head>
+<body>
+<table>
+  <thead>
+  <tr>
+    <th>First name</th>
+    <th>Last name</th>
+    <th>Patronymic</th>
+    <th>Phone number</th>
+    <th>Balance</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr>
+    <td><span th:text="${info.firstname}"> First name </span></td>
+    <td><span th:text="${info.lastname}"> Last name </span></td>
+    <td><span th:text="${info.patronymic}"> Patronymic </span></td>
+    <td><span th:text="${info.phoneNumber}"> Phone number </span></td>
+    <td><span th:text="${info.balance}"> Balance </span></td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

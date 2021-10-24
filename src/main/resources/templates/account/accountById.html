@@ -8,7 +8,7 @@
     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-kQtW33rZJAHjgefvhyyzcGF3C5TFyBQBA13V1RKPf4uH+bwyzQxZ6CmMZHmNBEfJ" crossorigin="anonymous"></script>    <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <title>My Spring Boot Application</title>
+    <title>Account</title>
 </head>
 <body>
 <table>
@@ -19,11 +19,16 @@
     </tr>
     </thead>
     <tbody>
-    <tr th:each="acc : ${account}">
-        <td><span th:text="${acc.login}"> Login </span></td>
-        <td><span th:text="${acc.password}"> Password </span></td>
+    <tr>
+        <td><span th:text="${account.login}"> Login </span></td>
+        <td><span th:text="${account.password}"> Password </span></td>
     </tr>
     </tbody>
 </table>
+<form th:method="DELETE" th:action="@{/account/${accountId} }" th:object="${account}">
+    <div>
+        <input type="submit" value="Delete account!">
+    </div>
+</form>
 </body>
 </html>
