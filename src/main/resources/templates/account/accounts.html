@@ -4,11 +4,18 @@
       xmlns:th="http://www.thymleaf.org">
 <head>
     <title>All accounts</title>
+    <style type='text/css'>
+        table.test { border-collapse: collapse; }
+        table.test td { border-bottom: 1px solid black;
+            border-right: solid black 1px;
+            border-left: solid black 1px;}
+    </style>
 </head>
 <body>
-<table>
+<table class="test">
     <thead>
     <tr>
+        <th> Id </th>
         <th> Login </th>
         <th> Password </th>
     </tr>
@@ -18,8 +25,16 @@
         <td> No Accounts available </td>
     </tr>
     <tr th:each="acc : ${accounts}">
+        <td><span th:text="${acc.getId()}"> Id </span></td>
         <td><span th:text="${acc.login}"> Login </span></td>
         <td><span th:text="${acc.password}"> Password </span></td>
+        <td>
+            <form th:method="GET"th:action="@{/account/{id}/edit(id=${acc.getId()})}" th:object="${account}">
+                <div>
+                    <input type="submit" value="Edit account!">
+                </div>
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>

@@ -28,7 +28,8 @@ public class AccountMappingController {
     }
 
     @GetMapping("/new")
-    public String createNewAccount(@ModelAttribute("account") Account account){
+    public String createNewAccount(Model model){
+        model.addAttribute("account", new Account());
         return "account/newAccountForm";
     }
 
@@ -51,7 +52,7 @@ public class AccountMappingController {
     }
 
     @DeleteMapping("/{accountId}")
-    public String deleteAccount(Model model, @PathVariable int accountId){
+    public String deleteAccount(@PathVariable int accountId){
         accountService.deleteAccount(accountService.findById(accountId));
         return "redirect:/account";
     }

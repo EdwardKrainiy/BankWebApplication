@@ -9,7 +9,7 @@
 <form th:method="POST" th:action="@{/account/{id}(id=${account.getId()})}" th:object="${account}">
     <div>
         <label for="login">Login</label>
-        <input type="text" th:field = "*{login}" id="login">
+        <input type="text" th:field = "*{login}" id="login" >
         <br/>
 
         <label for="password">Password</label>
