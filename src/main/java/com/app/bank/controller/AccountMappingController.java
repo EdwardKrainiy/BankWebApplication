@@ -1,6 +1,7 @@
 package com.app.bank.controller;
 
 import com.app.bank.model.Account;
+import com.app.bank.service.AccountInfoService;
 import com.app.bank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,6 +16,9 @@ public class AccountMappingController {
     @Autowired
     private AccountService accountService;
 
+    @Autowired
+    private AccountInfoService accountInfoService;
+
     @GetMapping()
     public String showAllAccounts(Model model){
         model.addAttribute("accounts", accountService.findAllAccounts());
@@ -22,8 +26,9 @@ public class AccountMappingController {
     }
 
     @GetMapping("/{accountId}")
-    public String showAccountById(Model model, @PathVariable int accountId){
+    public String showAccountById(Model model, @PathVariable("accountId") int accountId){
         model.addAttribute("account", accountService.findById(accountId));
+        model.addAttribute("accountInfo", accountInfoService.findAccountInfoById(accountId));
         return "account/accountById";
     }
 
