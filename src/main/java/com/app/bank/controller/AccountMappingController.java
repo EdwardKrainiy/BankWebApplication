@@ -1,6 +1,7 @@
 package com.app.bank.controller;
 
 import com.app.bank.model.Account;
+import com.app.bank.model.AccountInfo;
 import com.app.bank.service.AccountInfoService;
 import com.app.bank.service.AccountService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,12 +48,14 @@ public class AccountMappingController {
     @GetMapping("/{id}/edit")
     public String editAccount(Model model, @PathVariable("id") int accountId){
         model.addAttribute("account", accountService.findById(accountId));
+        model.addAttribute("accountInfo", accountInfoService.findAccountInfoById(accountId));
         return "account/edit";
     }
 
     @PostMapping("/{id}")
-    public String updateAccount(@ModelAttribute("person") Account account) {
+    public String updateAccount(@ModelAttribute("account") Account account, @ModelAttribute("accountInfo") AccountInfo accountInfo) {
         accountService.updateAccount(account);
+        accountInfoService.updateAccountInfo(accountInfo);
         return "redirect:/account";
     }
 

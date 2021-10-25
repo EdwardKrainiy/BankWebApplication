@@ -78,7 +78,7 @@
         <td><span th:text="${accountInfo.phoneNumber}"> PhoneNumber </span></td>
         <td><span th:text="${accountInfo.balance}"> Balance </span></td>
         <td>
-            <form th:method="GET" th:action="@{/account/{id}/edit(id=${account.getId()})}" th:object="${account}">
+            <form th:method="GET" th:action="@{/account/{id}/edit(id=${account.getId()})}">
                 <div>
                     <input type="submit" class="editButton" value="Edit">
                 </div>

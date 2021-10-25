@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Objects;
 
 @SuppressWarnings("JpaQlInspection")
 @EnableTransactionManagement
@@ -43,7 +44,7 @@ abstract class EntityRepository<TEntity extends BaseEntity> implements IReposito
     @Transactional
     @Override
     public int create(TEntity entity) {
-        Session session = transactionManager.getSessionFactory().openSession();
+        Session session = Objects.requireNonNull(transactionManager.getSessionFactory()).openSession();
         Transaction tx1 = session.beginTransaction();
         int entityId = (int) session.save(entity);
         tx1.commit();
@@ -54,7 +55,7 @@ abstract class EntityRepository<TEntity extends BaseEntity> implements IReposito
     @Transactional
     @Override
     public TEntity update(TEntity entity){
-        Session session = transactionManager.getSessionFactory().openSession();
+        Session session = Objects.requireNonNull(transactionManager.getSessionFactory()).openSession();
         Transaction tx1 = session.beginTransaction();
         session.update(entity);
         tx1.commit();
@@ -65,7 +66,7 @@ abstract class EntityRepository<TEntity extends BaseEntity> implements IReposito
     @Transactional
     @Override
     public void delete(TEntity entity){
-        Session session = transactionManager.getSessionFactory().openSession();
+        Session session = Objects.requireNonNull(transactionManager.getSessionFactory()).openSession();
         Transaction tx1 = session.beginTransaction();
         session.delete(entity);
         tx1.commit();

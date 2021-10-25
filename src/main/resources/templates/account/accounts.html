@@ -58,7 +58,7 @@
     <tr>
         <th> Id </th>
         <th> Login </th>
-        <th>Edit</th>
+        <th>Options</th>
     </tr>
     </thead>
     <tbody>
@@ -69,7 +69,7 @@
         <td><span th:text="${acc.getId()}"> Id </span></td>
         <td><span th:text="${acc.getLogin()}"> Login </span></td>
         <td>
-            <form th:method="GET"th:action="@{/account/{id}(id=${acc.getId()})}" th:object="${account}">
+            <form th:method="GET"th:action="@{/account/{id}(id=${acc.getId()})}">
                 <div>
                     <input type="submit" class="button" value="More info">
                 </div>
