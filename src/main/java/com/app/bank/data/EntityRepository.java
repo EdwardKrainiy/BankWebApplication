@@ -28,10 +28,6 @@ abstract class EntityRepository<TEntity extends BaseEntity> implements IReposito
     @Override
     public TEntity findById(int id){
         HibernateTransactionManager transactionManager = new AnnotationConfigApplicationContext(HibernateConfig.class).getBean(HibernateTransactionManager.class);
-
-        if(transactionManager != null){
-            System.out.println("Suucks");
-        }
         return (TEntity) transactionManager.getSessionFactory().openSession().createQuery("from " + getTableName() + " WHERE id = " + id).uniqueResult();
     }
 

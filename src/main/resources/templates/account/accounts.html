@@ -69,14 +69,19 @@
         <td><span th:text="${acc.getId()}"> Id </span></td>
         <td><span th:text="${acc.getLogin()}"> Login </span></td>
         <td>
-            <form th:method="GET"th:action="@{/account/{id}(id=${acc.getId()})}">
+            <form th:method="GET" th:action="@{/account/{id}(id=${acc.getId()})}">
                 <div>
                     <input type="submit" class="button" value="More info">
                 </div>
             </form>
         </td>
     </tr>
-    </tbody>
 </table>
+<form th:method="GET"th:action="@{/account/new}">
+    <div>
+        <input type="submit" class="button" value="Create new account">
+    </div>
+</form>
+</tbody>
 </body>
 </html>

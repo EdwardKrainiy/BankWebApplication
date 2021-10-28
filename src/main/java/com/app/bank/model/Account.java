@@ -1,6 +1,10 @@
 package com.app.bank.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -8,9 +12,13 @@ import java.util.Objects;
 
 public class Account extends BaseEntity {
     @Column(name = "Login")
+    @NotEmpty(message = "Login should not be empty")
+    @Size(min = 2, max = 30, message = "Login size should be between 2 and 30 characters")
     private String login;
 
     @Column(name = "Password")
+    @NotEmpty(message = "Password should not be empty")
+    @Size(min = 2, max = 30, message = "Login size should be between 2 and 30 characters")
     private String password;
 
     public Account() {

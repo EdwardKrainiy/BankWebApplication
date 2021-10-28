@@ -5,19 +5,47 @@
 <head>
     <meta charset="UTF-8">
     <title>Create new account</title>
+    <style>
+        input:focus {
+            border: 3px solid #04AA6D;
+        }
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            border: none;
+            background-color: #3CBC8D;
+            color: white;
+        }
+        .button {
+            background-color: #4CAF50;
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+    </style>
 </head>
 <body>
-<form th:method="POST" th:action="@{/account}" th:object="${account}">
+<form th:method="POST" th:action="@{/account}">
     <div>
         <label for="login">Login</label>
-        <input type="text" th:field = "*{login}" id="login">
+        <input type="text" th:field = "*{account.login}" id="login">
+        <div style="color: red" th:if = "${#fields.hasErrors('account.login')}" th:errors = "*{account.login}">Login error</div>
         <br/>
 
         <label for="password">Password</label>
-        <input type="text" th:field = "*{password}" id="password">
+        <input type="text" th:field = "*{account.password}" id="password">
+        <div style="color: red" th:if = "${#fields.hasErrors('account.password')}" th:errors = "*{account.password}">Password error</div>
         <br/>
 
-        <input type="submit" value="Add account!">
+        <input type="submit" value="Add account" class="button">
     </div>
 </form>
 </body>

@@ -3,6 +3,8 @@ package com.app.bank.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -13,9 +15,13 @@ public class Card extends BaseEntity{
     private Integer accountId;
 
     @Column(name = "CardNumber")
+    @Size(min = 5, max = 5, message = "Size of Card number should be 5 characters")
+    @Pattern(regexp = "[0-9]")
     private String cardNumber;
 
     @Column(name = "SecureCode")
+    @Size(min = 3, max = 3, message = "Size of Secure code should be 3 characters")
+    @Pattern(regexp = "[0-9]")
     private String secureCode;
 
     public int getAccountId() {

@@ -4,11 +4,15 @@ import com.app.bank.model.Account;
 import com.app.bank.model.AccountInfo;
 import com.app.bank.service.AccountInfoService;
 import com.app.bank.service.AccountService;
+import com.app.bank.service.CardService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @RequestMapping("/account")
@@ -16,6 +20,9 @@ import org.springframework.web.bind.annotation.*;
 public class AccountMappingController {
     @Autowired
     private AccountService accountService;
+
+    @Autowired
+    private CardService cardService;
 
     @Autowired
     private AccountInfoService accountInfoService;
@@ -30,6 +37,7 @@ public class AccountMappingController {
     public String showAccountById(Model model, @PathVariable("accountId") int accountId){
         model.addAttribute("account", accountService.findById(accountId));
         model.addAttribute("accountInfo", accountInfoService.findAccountInfoById(accountId));
+        model.addAttribute("cardInfo", cardService.findCardByAccountId(accountId));
         return "account/accountById";
     }
 
@@ -40,7 +48,11 @@ public class AccountMappingController {
     }
 
     @PostMapping()
-    public String putNewAccount(@ModelAttribute("account") Account account){
+    public String putNewAccount(@ModelAttribute("account") @Valid Account account,
+                                BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "account/new";
+        }
         accountService.createAccount(account);
         return "redirect:/account";
     }
@@ -53,14 +65,18 @@ public class AccountMappingController {
     }
 
     @PostMapping("/{id}")
-    public String updateAccount(@ModelAttribute("account") Account account, @ModelAttribute("accountInfo") AccountInfo accountInfo) {
+    public String updateAccount(@ModelAttribute("account") @Valid Account account, @ModelAttribute("accountInfo") @Valid AccountInfo accountInfo, BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            return "account/edit";
+        }
         accountService.updateAccount(account);
-        accountInfoService.updateAccountInfo(accountInfo);
         return "redirect:/account";
     }
 
     @DeleteMapping("/{accountId}")
     public String deleteAccount(@PathVariable int accountId){
+        accountInfoService.deleteAccountInfo(accountInfoService.findAccountInfoById(accountId));
+        cardService.deleteCard(cardService.findCardByAccountId(accountId));
         accountService.deleteAccount(accountService.findById(accountId));
         return "redirect:/account";
     }

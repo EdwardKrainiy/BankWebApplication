@@ -1,6 +1,9 @@
 package com.app.bank.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -11,15 +14,22 @@ public class AccountInfo extends BaseEntity {
     private int accountId;
 
     @Column(name = "Firstname")
+    @NotEmpty(message = "First name should not be empty")
+    @Size(min = 2, max = 30, message = "First name size should be between 2 and 30 characters")
     private String firstname;
 
     @Column(name = "Lastname")
+    @NotEmpty(message = "Last name should not be empty")
+    @Size(min = 2, max = 30, message = "Last name size should be between 2 and 30 characters")
     private String lastname;
 
     @Column(name = "Patronymic")
+    @Size(min = 2, max = 30, message = "Patronymic size should be between 2 and 30 characters")
     private String patronymic;
 
     @Column(name = "PhoneNumber")
+    @Size(min = 8, max = 8, message = "Phone number size should be between 2 and 30 characters")
+    @Pattern(regexp = "[0-9]")
     private String phoneNumber;
 
     @Column(name = "Balance")

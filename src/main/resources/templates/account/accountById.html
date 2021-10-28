@@ -65,6 +65,8 @@
         <th>Patronymic</th>
         <th>Phone Number</th>
         <th>Balance</th>
+        <th>Card Number</th>
+        <th>Secure Code</th>
         <th>Options</th>
     </tr>
     </thead>
@@ -77,13 +79,16 @@
         <td><span th:text="${accountInfo.patronymic}"> Patronymic </span></td>
         <td><span th:text="${accountInfo.phoneNumber}"> PhoneNumber </span></td>
         <td><span th:text="${accountInfo.balance}"> Balance </span></td>
+        <td><span th:text="${cardInfo.cardNumber}"> CardNumber </span></td>
+        <td><span th:text="${cardInfo.secureCode}"> SecureCode </span></td>
+
         <td>
             <form th:method="GET" th:action="@{/account/{id}/edit(id=${account.getId()})}">
                 <div>
                     <input type="submit" class="editButton" value="Edit">
                 </div>
             </form>
-            <form th:method="GET" th:object="${account}">
+            <form th:method="DELETE" th:action="@{/account/{id}(id=${account.getId()})}">
                 <div>
                     <input type="submit" class="deleteButton" value="Delete">
                 </div>
